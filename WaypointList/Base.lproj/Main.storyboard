@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Wqt-5Q-cHC">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Your Tours-->
+        <scene sceneID="u59-a8-fJS">
+            <objects>
+                <tableViewController id="zQx-XG-mqO" customClass="WaypointTableViewController" customModule="WaypointList" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="jTA-cE-BjA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WaypointTableViewCell" id="y9d-Lc-pxK" customClass="WaypointTableViewCell" customModule="WaypointList" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y9d-Lc-pxK" id="gsS-lV-JcR">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zlc-gN-zTG">
+                                            <rect key="frame" x="8" y="8" width="584" height="73"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="WaypointModelCollectionName:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUJ-br-1hr">
+                                                    <rect key="frame" x="141" y="0.0" width="302" height="37"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Number of waypoints:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQQ-Sp-cqM">
+                                                    <rect key="frame" x="208" y="37" width="168" height="36"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="zlc-gN-zTG" firstAttribute="bottom" secondItem="gsS-lV-JcR" secondAttribute="bottomMargin" id="1lj-bL-oeu"/>
+                                        <constraint firstItem="zlc-gN-zTG" firstAttribute="leading" secondItem="gsS-lV-JcR" secondAttribute="leadingMargin" id="T1l-q5-yYB"/>
+                                        <constraint firstItem="zlc-gN-zTG" firstAttribute="trailing" secondItem="gsS-lV-JcR" secondAttribute="trailingMargin" id="eJc-dD-vkw"/>
+                                        <constraint firstItem="zlc-gN-zTG" firstAttribute="top" secondItem="gsS-lV-JcR" secondAttribute="topMargin" id="lF8-D4-NiQ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="qUJ-br-1hr" id="KX1-P4-da6"/>
+                                    <outlet property="numberLabel" destination="VQQ-Sp-cqM" id="QnB-To-iSa"/>
+                                    <segue destination="IaO-ME-fbn" kind="show" identifier="ShowWaypoints" id="2aU-aQ-KXU"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zQx-XG-mqO" id="lYY-Vh-Qut"/>
+                            <outlet property="delegate" destination="zQx-XG-mqO" id="Ul2-yT-nJF"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Your Tours" id="zN7-w3-Oik">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="3KT-FP-ZHr">
+                            <connections>
+                                <action selector="addWaypointModel" destination="zQx-XG-mqO" id="8UC-Hw-CtU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DlX-Yj-sgk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="D7f-ju-uYH" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1642" y="737"/>
+        </scene>
+        <!--Waypoint View Controller-->
+        <scene sceneID="zzL-fh-cHC">
+            <objects>
+                <viewController id="IaO-ME-fbn" customClass="WaypointViewController" customModule="WaypointList" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QSE-xa-PDn"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZF2-1w-zRo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R3F-hc-M1E">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oVd-sV-DAT">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="oVd-sV-DAT" secondAttribute="trailing" constant="-20" id="GMg-TF-0L3"/>
+                            <constraint firstItem="oVd-sV-DAT" firstAttribute="top" secondItem="QSE-xa-PDn" secondAttribute="bottom" id="dJV-k3-J2d"/>
+                            <constraint firstItem="ZF2-1w-zRo" firstAttribute="top" secondItem="oVd-sV-DAT" secondAttribute="bottom" id="eGn-m5-zGy"/>
+                            <constraint firstItem="oVd-sV-DAT" firstAttribute="leading" secondItem="R3F-hc-M1E" secondAttribute="leadingMargin" constant="-20" id="yjm-HL-3CG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="25s-Xl-OfL">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="save" id="sCE-9G-vne">
+                            <connections>
+                                <segue destination="D7f-ju-uYH" kind="unwind" unwindAction="unwindToTableView:" id="1gu-yo-lgy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="MMe-5M-Oqi">
+                            <connections>
+                                <action selector="addWaypoint:" destination="IaO-ME-fbn" id="tNt-eA-DCx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="map" destination="oVd-sV-DAT" id="WuY-1p-9Kp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pj2-lo-hhQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2661" y="668"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9Ps-0u-Uw9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wqt-5Q-cHC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9hX-Fw-c5M">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zQx-XG-mqO" kind="relationship" relationship="rootViewController" id="rTP-Pd-IM4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A5j-WT-rFK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="952" y="737"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Tc0-Wd-u52">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FWM-vp-oYO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NL9-6h-urv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="IaO-ME-fbn" kind="relationship" relationship="rootViewController" id="9ZI-i1-LyY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XHR-qz-LlE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2001" y="-29"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="2aU-aQ-KXU"/>
+    </inferredMetricsTieBreakers>
+</document>
