@@ -14,7 +14,7 @@ class WaypointTableViewController: UITableViewController {
     var waypointModelCollection = WaypointModelCollection()
     
     override func viewDidLoad() {
-        
+
         navigationItem.leftBarButtonItem = editButtonItem()
         super.viewDidLoad()
     }

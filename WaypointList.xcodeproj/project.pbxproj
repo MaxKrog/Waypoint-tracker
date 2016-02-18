@@ -17,6 +17,10 @@
 		D93D2CF51C7231A100EBB0D8 /* Waypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D2CF41C7231A100EBB0D8 /* Waypoint.swift */; };
 		D93D2CF71C72345200EBB0D8 /* WaypointTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D2CF61C72345200EBB0D8 /* WaypointTableViewCell.swift */; };
 		D93D2CF91C72389100EBB0D8 /* WaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D2CF81C72389100EBB0D8 /* WaypointViewController.swift */; };
+		D9EF4E811C753CB800D62F7A /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF4E801C753CB800D62F7A /* Audio.swift */; };
+		D9EF4E871C754E0B00D62F7A /* night.wav in Resources */ = {isa = PBXBuildFile; fileRef = D9EF4E861C754E0B00D62F7A /* night.wav */; };
+		D9EF4E8C1C7554D400D62F7A /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF4E8B1C7554D400D62F7A /* LocationTracker.swift */; };
+		D9EF4E8E1C7554F900D62F7A /* MasterTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF4E8D1C7554F900D62F7A /* MasterTracker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		D93D2CF41C7231A100EBB0D8 /* Waypoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoint.swift; sourceTree = "<group>"; };
 		D93D2CF61C72345200EBB0D8 /* WaypointTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointTableViewCell.swift; sourceTree = "<group>"; };
 		D93D2CF81C72389100EBB0D8 /* WaypointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointViewController.swift; sourceTree = "<group>"; };
+		D9EF4E801C753CB800D62F7A /* Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
+		D9EF4E861C754E0B00D62F7A /* night.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = night.wav; sourceTree = "<group>"; };
+		D9EF4E8B1C7554D400D62F7A /* LocationTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
+		D9EF4E8D1C7554F900D62F7A /* MasterTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterTracker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +93,8 @@
 		D93D2CDE1C7230B600EBB0D8 /* WaypointList */ = {
 			isa = PBXGroup;
 			children = (
+				D9EF4E8A1C75510500D62F7A /* Trackers */,
+				D9EF4E7F1C753C5900D62F7A /* Audio */,
 				D926BD0A1C73E5A000B58343 /* WaypointModelViews */,
 				D926BD071C727F4D00B58343 /* WaypointData */,
 				D93D2CE31C7230B600EBB0D8 /* Main.storyboard */,
@@ -101,6 +111,24 @@
 				D93D2CEB1C7230B600EBB0D8 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D9EF4E7F1C753C5900D62F7A /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				D9EF4E861C754E0B00D62F7A /* night.wav */,
+				D9EF4E801C753CB800D62F7A /* Audio.swift */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		D9EF4E8A1C75510500D62F7A /* Trackers */ = {
+			isa = PBXGroup;
+			children = (
+				D9EF4E8B1C7554D400D62F7A /* LocationTracker.swift */,
+				D9EF4E8D1C7554F900D62F7A /* MasterTracker.swift */,
+			);
+			name = Trackers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +192,7 @@
 				D93D2CEA1C7230B600EBB0D8 /* LaunchScreen.storyboard in Resources */,
 				D93D2CE71C7230B600EBB0D8 /* Assets.xcassets in Resources */,
 				D93D2CE51C7230B600EBB0D8 /* Main.storyboard in Resources */,
+				D9EF4E871C754E0B00D62F7A /* night.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9EF4E811C753CB800D62F7A /* Audio.swift in Sources */,
 				D93D2CF71C72345200EBB0D8 /* WaypointTableViewCell.swift in Sources */,
 				D93D2CF31C72313200EBB0D8 /* WaypointTableViewController.swift in Sources */,
 				D926BD041C72759300B58343 /* WaypointModel.swift in Sources */,
@@ -181,6 +211,8 @@
 				D93D2CF51C7231A100EBB0D8 /* Waypoint.swift in Sources */,
 				D93D2CE01C7230B600EBB0D8 /* AppDelegate.swift in Sources */,
 				D93D2CF91C72389100EBB0D8 /* WaypointViewController.swift in Sources */,
+				D9EF4E8C1C7554D400D62F7A /* LocationTracker.swift in Sources */,
+				D9EF4E8E1C7554F900D62F7A /* MasterTracker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
