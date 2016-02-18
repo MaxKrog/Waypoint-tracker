@@ -33,7 +33,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     //MARK: Location updater.
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        location = locations[ locations.count - 1 ]
+        location = locations.last!
         delegate?.locationChanged(location)
         
     }

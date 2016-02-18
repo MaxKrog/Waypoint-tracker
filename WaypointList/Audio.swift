@@ -26,11 +26,12 @@ class Audio: NSObject, MasterTrackerDelegate{
     var envNode = AVAudioEnvironmentNode()
 
     override init(){
-        player.position = AVAudioMake3DPoint(0, 0, 20)
-        player.renderingAlgorithm = AVAudio3DMixingRenderingAlgorithm.SphericalHead
+        //player.position = AVAudioMake3DPoint(0, 0, 20)
+        player.renderingAlgorithm = AVAudio3DMixingRenderingAlgorithm.HRTF
         
         envNode.reverbParameters.enable = true
-        envNode.distanceAttenuationParameters.maximumDistance = 50
+        envNode.reverbParameters.loadFactoryReverbPreset(.Cathedral)
+        envNode.distanceAttenuationParameters.maximumDistance = 20
         envNode.renderingAlgorithm = .SphericalHead
         envNode.listenerPosition = AVAudioMake3DPoint(0, 0, 0)
         envNode.listenerAngularOrientation = AVAudio3DAngularOrientation(yaw: yaw, pitch: pitch , roll: roll)
@@ -43,7 +44,7 @@ class Audio: NSObject, MasterTrackerDelegate{
         
         //MARK: Load audio-file.
         
-        let fileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("night", ofType: "wav")!)
+        let fileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("crane", ofType: "wav")!)
         let audioFile = try! AVAudioFile(forReading: fileURL)
         let audioFormat = audioFile.processingFormat
         let audioFrameCount = UInt32(audioFile.length)

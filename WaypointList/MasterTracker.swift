@@ -14,6 +14,7 @@ class MasterTracker:NSObject, LocationTrackerDelegate {
 
     //OWN OBJECTS
     var locationTracker: LocationTracker!
+    //MARK: JOHAN ÄNDRA HÄR
     var waypoint = Waypoint(coordinate: CLLocationCoordinate2D(latitude: 59.320634, longitude: 17.951006), radius: 10, title: "hej")
     
     var delegate: MasterTrackerDelegate?
