@@ -27,11 +27,12 @@ class Audio: NSObject, MasterTrackerDelegate{
 
     override init(){
         //player.position = AVAudioMake3DPoint(0, 0, 20)
-        player.renderingAlgorithm = AVAudio3DMixingRenderingAlgorithm.HRTF
+        player.renderingAlgorithm = AVAudio3DMixingRenderingAlgorithm.SphericalHead
         
-        envNode.reverbParameters.enable = true
-        envNode.reverbParameters.loadFactoryReverbPreset(.Cathedral)
-        envNode.distanceAttenuationParameters.maximumDistance = 20
+        //envNode.reverbParameters.enable = true
+        //envNode.reverbParameters.loadFactoryReverbPreset(.Cathedral)
+        envNode.distanceAttenuationParameters.maximumDistance = 10
+        envNode.distanceAttenuationParameters.distanceAttenuationModel = AVAudioEnvironmentDistanceAttenuationModel.Inverse
         envNode.renderingAlgorithm = .SphericalHead
         envNode.listenerPosition = AVAudioMake3DPoint(0, 0, 0)
         envNode.listenerAngularOrientation = AVAudio3DAngularOrientation(yaw: yaw, pitch: pitch , roll: roll)
@@ -44,7 +45,7 @@ class Audio: NSObject, MasterTrackerDelegate{
         
         //MARK: Load audio-file.
         
-        let fileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("crane", ofType: "wav")!)
+        let fileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("golfball", ofType: "wav")!)
         let audioFile = try! AVAudioFile(forReading: fileURL)
         let audioFormat = audioFile.processingFormat
         let audioFrameCount = UInt32(audioFile.length)
@@ -69,7 +70,7 @@ class Audio: NSObject, MasterTrackerDelegate{
     //MARK: Delegate
     func updateDistance (newDistance: Float) {
         distance = newDistance
-        player.position = AVAudioMake3DPoint(0, 0, distance)
+        player.position = AVAudioMake3DPoint(0, 0, 10)
     }
     
     func updateRelativeBearing(newRelativeBearing: Double) {

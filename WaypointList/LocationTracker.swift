@@ -28,6 +28,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.headingOrientation = CLDeviceOrientation.Portrait
+        locationManager.headingFilter = 1
         locationManager.startUpdatingHeading()
     }
     
