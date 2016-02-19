@@ -92,7 +92,7 @@
         <!--Settings-->
         <scene sceneID="y6g-ov-VZo">
             <objects>
-                <viewController id="ZJa-Tf-lS5" sceneMemberID="viewController">
+                <viewController id="ZJa-Tf-lS5" customClass="SettingsViewController" customModule="WaypointList" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pvn-Jy-baT"/>
                         <viewControllerLayoutGuide type="bottom" id="G1z-HS-OA0"/>
@@ -100,7 +100,20 @@
                     <view key="view" contentMode="scaleToFill" id="j81-pl-kLE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="1" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="AZn-U5-7n9">
+                                <rect key="frame" x="18" y="129" width="564" height="31"/>
+                                <connections>
+                                    <action selector="sliderChanged:" destination="ZJa-Tf-lS5" eventType="valueChanged" id="SJc-A0-Gva"/>
+                                </connections>
+                            </slider>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AZn-U5-7n9" firstAttribute="leading" secondItem="j81-pl-kLE" secondAttribute="leadingMargin" id="1Qo-yF-4a9"/>
+                            <constraint firstItem="AZn-U5-7n9" firstAttribute="trailing" secondItem="j81-pl-kLE" secondAttribute="trailingMargin" id="RAc-9f-o0A"/>
+                            <constraint firstItem="AZn-U5-7n9" firstAttribute="top" secondItem="pvn-Jy-baT" secondAttribute="bottom" constant="65" id="UkX-Jg-gM9"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="HLe-hG-PET"/>
                 </viewController>
@@ -124,7 +137,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BjG-A9-Bc9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="768" y="1339"/>
+            <point key="canvasLocation" x="752" y="1773"/>
         </scene>
         <!--Navigate View Controller-->
         <scene sceneID="sqj-j6-n0w">
