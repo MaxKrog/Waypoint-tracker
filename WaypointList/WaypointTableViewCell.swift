@@ -11,13 +11,15 @@ import UIKit
 class WaypointTableViewCell: UITableViewCell {
 
     @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var numberLabel: UILabel!
-    
+    @IBOutlet weak var numberLabel: UILabel!
+    @IBOutlet weak var goButton: UIButton!
+
     var waypointModel: WaypointModel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
     
     func updateWaypointModel(waypointModel: WaypointModel){
         nameLabel.text = waypointModel.title

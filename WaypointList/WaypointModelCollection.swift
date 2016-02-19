@@ -6,12 +6,16 @@
 //  Copyright © 2016 maxkrog. All rights reserved.
 //
 
+import UIKit
 import Foundation
 import CoreLocation
 
-class WaypointModelCollection: NSObject {
+class WaypointModelCollection: NSObject{
     
     var waypointModels = [WaypointModel]()
+    static let singleton = WaypointModelCollection()
+    
+    var selected: Int = 0
     
     override init(){
         super.init()
@@ -30,9 +34,15 @@ class WaypointModelCollection: NSObject {
         self.waypointModels += [waypointModel]
     }
     
+    //MARK: API
+    
+    func updateSelected(index: Int) {
+        selected = index
+    }
+    
     
     //MARK: Helper
-    func loadDefaults() -> [WaypointModel]{
+    private func loadDefaults() -> [WaypointModel]{
         var retArray = [WaypointModel]()
         for index in 1..<6 {
             let indexDouble = Double(index)
@@ -53,7 +63,7 @@ class WaypointModelCollection: NSObject {
         }
     }
     
-    func load() -> [WaypointModel]? {
+    private func load() -> [WaypointModel]? {
         return NSKeyedUnarchiver.unarchiveObjectWithFile(WaypointModel.ArchiveURL.path!) as? [WaypointModel]
     }
 

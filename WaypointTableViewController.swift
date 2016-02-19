@@ -11,12 +11,19 @@ import CoreLocation
 class WaypointTableViewController: UITableViewController {
 
     //MARK: Props
-    var waypointModelCollection = WaypointModelCollection()
+    var waypointModelCollection = WaypointModelCollection.singleton
     
     override func viewDidLoad() {
+        print("WaypointTableViewController: viewDidLoad")
 
         navigationItem.leftBarButtonItem = editButtonItem()
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        print("WaypointTableViewController: viewWillAppear")
+        super.viewWillAppear(animated)
+        
     }
 
     // MARK: - Table view data source
@@ -113,6 +120,19 @@ class WaypointTableViewController: UITableViewController {
                 let indexPath = tableView.indexPathForCell(selectedWaypointTableViewCell)
                 let selectedWaypointModel = waypointModelCollection.waypointModels[indexPath!.row]
                 waypointViewController.waypointModel = selectedWaypointModel
+            }
+        } else if segue.identifier == "StartTour" {
+            print("Preparing for segue start tour")
+            
+            if let dwc = segue.destinationViewController as? NavigateViewController {
+                if let button = sender as? UIButton {
+                    if let selectedTableViewCell = button.superview?.superview as? WaypointTableViewCell {
+                        let indexPath = tableView.indexPathForCell(selectedTableViewCell)
+                        let selectedWaypointModel = waypointModelCollection.waypointModels[indexPath!.row]
+                        
+                        dwc.waypointModel = selectedWaypointModel
+                    }
+                }
             }
         }
     }

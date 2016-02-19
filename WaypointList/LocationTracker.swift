@@ -12,6 +12,9 @@ import MapKit
 
 class LocationTracker: NSObject, CLLocationManagerDelegate {
     
+    
+    //MARK: Singleton
+    static let singleton = LocationTracker()
     //MARK: Properties
     var locationManager = CLLocationManager()
     var delegate: LocationTrackerDelegate?

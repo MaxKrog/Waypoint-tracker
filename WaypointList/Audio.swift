@@ -5,16 +5,15 @@
 //  Created by Max Krog on 2016-02-17.
 //  Copyright © 2016 Max Krog. All rights reserved.
 //
-
-import UIKit
 import CoreLocation
 import AVFoundation
-import CoreAudio
-
-class Audio: NSObject, MasterTrackerDelegate{
+class Audio: NSObject{
+    
+    //MARK: Singleton
+    static let singleton = Audio()
     
     //MARK: Soundorientation-values
-    var yaw: Float = -180
+    var yaw: Float = 0
     var pitch: Float = 0
     var roll: Float = 0
     
@@ -26,11 +25,9 @@ class Audio: NSObject, MasterTrackerDelegate{
     var envNode = AVAudioEnvironmentNode()
 
     override init(){
-        //player.position = AVAudioMake3DPoint(0, 0, 20)
         player.renderingAlgorithm = AVAudio3DMixingRenderingAlgorithm.SphericalHead
-        
-        //envNode.reverbParameters.enable = true
-        //envNode.reverbParameters.loadFactoryReverbPreset(.Cathedral)
+        envNode.reverbParameters.enable = true
+        envNode.reverbParameters.loadFactoryReverbPreset(.Cathedral)
         envNode.distanceAttenuationParameters.maximumDistance = 10
         envNode.distanceAttenuationParameters.distanceAttenuationModel = AVAudioEnvironmentDistanceAttenuationModel.Inverse
         envNode.renderingAlgorithm = .SphericalHead
@@ -45,7 +42,7 @@ class Audio: NSObject, MasterTrackerDelegate{
         
         //MARK: Load audio-file.
         
-        let fileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("golfball", ofType: "wav")!)
+        let fileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("night", ofType: "wav")!)
         let audioFile = try! AVAudioFile(forReading: fileURL)
         let audioFormat = audioFile.processingFormat
         let audioFrameCount = UInt32(audioFile.length)
@@ -61,19 +58,25 @@ class Audio: NSObject, MasterTrackerDelegate{
         //MARK: Play sounds
         
         player.scheduleBuffer(audioFileBuffer, atTime: nil, options: .Loops, completionHandler: nil)
+        
+    }
+    
+    func play() {
         player.play()
-        
-        //var timer = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "changeOrientation", userInfo: nil, repeats: true)
-        
+    }
+    
+    func pause() {
+        player.pause()
     }
     
     //MARK: Delegate
     func updateDistance (newDistance: Float) {
         distance = newDistance
-        player.position = AVAudioMake3DPoint(0, 0, 10)
+        player.position = AVAudioMake3DPoint(0, 0, distance)
     }
     
     func updateRelativeBearing(newRelativeBearing: Double) {
+        print("Audio: New bearing: \(newRelativeBearing.description)")
         yaw = Float(newRelativeBearing)
         envNode.listenerAngularOrientation = AVAudio3DAngularOrientation(yaw: yaw, pitch: pitch , roll: roll)
         

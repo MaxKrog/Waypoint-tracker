@@ -11,15 +11,10 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var masterTracker = MasterTracker()
-    var locationTracker = LocationTracker()
-    var audio = Audio()
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        locationTracker.delegate = masterTracker
-        masterTracker.delegate = audio
         return true
     }
 
