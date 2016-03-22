@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
-class WaypointViewController: UIViewController, MKMapViewDelegate {
+class AddWaypointViewController: UIViewController, MKMapViewDelegate {
 
     //MARK: Properties
     var waypointModel: WaypointModel?
@@ -53,12 +53,18 @@ class WaypointViewController: UIViewController, MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         //Should dequeue a view.
-        let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
-        view.canShowCallout = true
-        view.animatesDrop = true
-        view.draggable = true
+        if (annotation is MKUserLocation) {
+            //if annotation is not an MKPointAnnotation (eg. MKUserLocation),
+            //return nil so map draws default view for it (eg. blue dot)...
+            return nil
+        } else {
+            let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+            view.canShowCallout = true
+            view.animatesDrop = true
+            view.draggable = true
         
-        return view
+            return view
+        }
     }
 
 }

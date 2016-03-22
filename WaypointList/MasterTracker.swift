@@ -31,11 +31,12 @@ class MasterTracker: NSObject, LocationTrackerDelegate {
         self.waypointModel = waypointModel
     }
     
-    //MARK: Interaction API
+    //MARK: Public API
     
     func updateActiveWaypointIndex(newIndex: Int){
         activeWaypointIndex = newIndex
         delegate?.updateActiveWaypoint(activeWaypointIndex)
+        locationChanged()
     }
     
     func changeAuto(newAuto: Bool) {
@@ -52,8 +53,10 @@ class MasterTracker: NSObject, LocationTrackerDelegate {
     
     
     //MARK: Delegate for LocationTracker
-    func locationChanged(newLocation: CLLocation) { //Calculates distance and bearing.
+    func locationChanged() { //Calculates distance and bearing.
+        let newLocation = locationTracker.location
         delegate?.updateActiveWaypoint(activeWaypointIndex)
+
         let activeWaypoint = waypointModel.waypoints[activeWaypointIndex]
         let activeWaypointLocation = CLLocation(latitude: activeWaypoint.coordinate.latitude, longitude: activeWaypoint.coordinate.longitude)
         
@@ -72,10 +75,13 @@ class MasterTracker: NSObject, LocationTrackerDelegate {
         }
     }
     
-    func headingChanged(newHeading: CLLocationDirection) {
+    func headingChanged() {
+        let newHeading = locationTracker.heading
+        
         func mod(a: Double, b: Double) -> Double {
             return (a - floor(a/b) * b)
         }
+        
         let absoluteBearing = self.absoluteBearing
         let a = absoluteBearing - newHeading + 180
         let b = mod(a, b: 360)

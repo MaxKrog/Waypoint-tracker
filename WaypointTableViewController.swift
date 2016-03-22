@@ -101,7 +101,7 @@ class WaypointTableViewController: UITableViewController {
     // MARK: - Navigation
     
     @IBAction func unwindToTableView(sender: UIStoryboardSegue) {
-        if sender.sourceViewController is WaypointViewController{
+        if sender.sourceViewController is AddWaypointViewController{
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
             }
@@ -113,7 +113,7 @@ class WaypointTableViewController: UITableViewController {
         
         if segue.identifier == "ShowWaypoints" {
             
-            let waypointViewController = segue.destinationViewController as! WaypointViewController
+            let waypointViewController = segue.destinationViewController as! AddWaypointViewController
             
             if let selectedWaypointTableViewCell = sender as? WaypointTableViewCell {
                 //Executed by click of a table-cell

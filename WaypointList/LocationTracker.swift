@@ -19,6 +19,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     var delegate: LocationTrackerDelegate?
     
+    //Interesting for master.
     dynamic var location = CLLocation()
     dynamic var heading = CLLocationDirection(0) // 0 -> 360 degrees. Starting from north.
     
@@ -35,24 +36,22 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         locationManager.startUpdatingHeading()
     }
     
-    //MARK: Location updater.
+    //MARK: CLLocationManagerDelegate.
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = locations.last!
-        delegate?.locationChanged(location)
+        delegate?.locationChanged()
         
     }
     
-    //MARK: Heading updater.
-    
     func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         heading = newHeading.trueHeading
-        delegate?.headingChanged(heading)
+        delegate?.headingChanged()
         
     }
     
 }
 
 protocol LocationTrackerDelegate {
-    func locationChanged(newLocation: CLLocation)
-    func headingChanged(newHeading: CLLocationDirection)
+    func locationChanged()
+    func headingChanged()
 }
