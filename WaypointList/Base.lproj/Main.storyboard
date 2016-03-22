@@ -185,18 +185,26 @@
                                     </switch>
                                 </subviews>
                             </stackView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XhL-BE-G9Q">
+                                <rect key="frame" x="20" y="198" width="560" height="353"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="XhL-BE-G9Q" secondAttribute="trailing" id="2t9-ZE-Wa0"/>
                             <constraint firstItem="Ixu-Or-rrt" firstAttribute="leading" secondItem="msu-Uj-RvC" secondAttribute="leadingMargin" constant="17" id="9sl-fC-Cgt"/>
                             <constraint firstItem="qxU-wY-9xV" firstAttribute="top" secondItem="Ixu-Or-rrt" secondAttribute="bottom" constant="20" id="MDK-3X-8nZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qxU-wY-9xV" secondAttribute="trailing" id="PwB-hy-Tha"/>
+                            <constraint firstItem="XhL-BE-G9Q" firstAttribute="leading" secondItem="msu-Uj-RvC" secondAttribute="leadingMargin" id="Uzf-0V-ecs"/>
+                            <constraint firstItem="XhL-BE-G9Q" firstAttribute="top" secondItem="qxU-wY-9xV" secondAttribute="bottom" constant="8" id="erV-UP-ITN"/>
                             <constraint firstItem="qxU-wY-9xV" firstAttribute="leading" secondItem="msu-Uj-RvC" secondAttribute="leadingMargin" id="m9w-Cv-Igt"/>
                             <constraint firstItem="Ixu-Or-rrt" firstAttribute="top" secondItem="2Kh-UN-KhB" secondAttribute="bottom" constant="20" id="qAl-Vm-vAn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ixu-Or-rrt" secondAttribute="trailing" id="uhx-3c-nXH"/>
+                            <constraint firstItem="hKY-vu-FPI" firstAttribute="top" secondItem="XhL-BE-G9Q" secondAttribute="bottom" id="wYv-k8-uoR"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="map" destination="XhL-BE-G9Q" id="AuD-Ls-8wz"/>
                         <outlet property="stepper" destination="Z25-8b-n3B" id="7sQ-g5-hJM"/>
                         <outlet property="waypointLabel" destination="4rp-dC-NZI" id="7id-lY-MMw"/>
                     </connections>

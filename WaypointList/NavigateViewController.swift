@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MapKit
 
-class NavigateViewController: UIViewController, MasterTrackerDelegate {
+class NavigateViewController: UIViewController, MasterTrackerDelegate, MKMapViewDelegate {
     
     //MARK: Properties
     var masterTracker: MasterTracker!
@@ -18,6 +19,16 @@ class NavigateViewController: UIViewController, MasterTrackerDelegate {
     @IBOutlet weak var waypointLabel: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     
+    @IBOutlet weak var map: MKMapView!{
+        didSet {
+            map.delegate = self
+            map.pitchEnabled = false
+            map.rotateEnabled = false
+            map.showsUserLocation = true
+            map.userTrackingMode = .Follow
+    }
+}
+
     //MARK: Actions
     @IBAction func stepperClick(sender: UIStepper) {
         let intValue = Int(stepper.value)

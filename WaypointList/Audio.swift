@@ -54,7 +54,7 @@ class Audio: NSObject{
         
         //MARK: Load audio-file.
         
-        let fileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("aos", ofType: "wav")!)
+        let fileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("sonar", ofType: "wav")!)
         let audioFile = try! AVAudioFile(forReading: fileURL)
         let audioFormat = audioFile.processingFormat
         let audioFrameCount = UInt32(audioFile.length)
