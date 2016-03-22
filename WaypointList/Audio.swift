@@ -23,6 +23,8 @@ class Audio: NSObject{
     var engine = AVAudioEngine()
     var player = AVAudioPlayerNode()
     var envNode = AVAudioEnvironmentNode()
+    
+    var yaayPlayer = AVAudioPlayerNode()
 
     override init(){
         //player.renderingAlgorithm = AVAudio3DMixingRenderingAlgorithm.HRTF
@@ -30,9 +32,9 @@ class Audio: NSObject{
         //player.obstruction = -10.0
         
         envNode.reverbParameters.enable = true
-        envNode.reverbParameters.loadFactoryReverbPreset(.Cathedral)
+        envNode.reverbParameters.loadFactoryReverbPreset(.MediumRoom)
         
-        player.reverbBlend = 0.2
+        player.reverbBlend = 0.9
         
         envNode.distanceAttenuationParameters.distanceAttenuationModel = AVAudioEnvironmentDistanceAttenuationModel.Inverse
         envNode.distanceAttenuationParameters.maximumDistance = 100
@@ -40,7 +42,7 @@ class Audio: NSObject{
         
         envNode.renderingAlgorithm = .HRTF
         
-        envNode.listenerPosition = AVAudioMake3DPoint(0, 0, 0)
+        envNode.listenerPosition = AVAudioMake3DPoint(20, 0, 0)
         envNode.listenerAngularOrientation = AVAudio3DAngularOrientation(yaw: yaw, pitch: pitch , roll: roll)
         
         super.init()
@@ -48,18 +50,21 @@ class Audio: NSObject{
         // MARK: Audio connect nodes
         engine.attachNode(player)
         engine.attachNode(envNode)
+        engine.attachNode(yaayPlayer)
         
         //MARK: Load audio-file.
         
-        let fileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("crane", ofType: "wav")!)
+        let fileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("aos", ofType: "wav")!)
         let audioFile = try! AVAudioFile(forReading: fileURL)
         let audioFormat = audioFile.processingFormat
         let audioFrameCount = UInt32(audioFile.length)
         let audioFileBuffer = AVAudioPCMBuffer(PCMFormat: audioFormat, frameCapacity: audioFrameCount)
         try! audioFile.readIntoBuffer(audioFileBuffer)
+
         
         engine.connect(player, to: envNode, format: audioFormat )
         engine.connect(envNode, to: engine.mainMixerNode , format: nil)
+        engine.connect(yaayPlayer, to: engine.mainMixerNode, format: nil)
         
         //MARK: Start engine
         try! engine.start()
@@ -76,6 +81,15 @@ class Audio: NSObject{
     
     func pause() {
         player.pause()
+    }
+    
+    func yaay() {
+        print("Yaay! User reached a waypoint!")
+        let yaayFileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("yaay", ofType: "wav")!)
+        let yaayAudioFile = try! AVAudioFile(forReading: yaayFileURL)
+        
+        yaayPlayer.scheduleFile(yaayAudioFile, atTime: nil, completionHandler: nil)
+        yaayPlayer.play()
     }
     
     //MARK: Delegate

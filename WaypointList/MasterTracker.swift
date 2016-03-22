@@ -65,6 +65,7 @@ class MasterTracker: NSObject, LocationTrackerDelegate {
             let newIndex = activeWaypointIndex + 1
             if newIndex < waypointModel.waypoints.count {
                 activeWaypointIndex = newIndex
+                audio.yaay()
                 
                 
             }

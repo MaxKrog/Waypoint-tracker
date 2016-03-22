@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D908449D1C7B1AC200FA7439 /* aos.wav in Resources */ = {isa = PBXBuildFile; fileRef = D908449C1C7B1AC200FA7439 /* aos.wav */; };
 		D926BD041C72759300B58343 /* WaypointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D926BD031C72759300B58343 /* WaypointModel.swift */; };
 		D926BD091C728EBB00B58343 /* WaypointModelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D926BD081C728EBB00B58343 /* WaypointModelCollection.swift */; };
 		D93D2CE01C7230B600EBB0D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D2CDF1C7230B600EBB0D8 /* AppDelegate.swift */; };
@@ -19,6 +20,7 @@
 		D93D2CF91C72389100EBB0D8 /* WaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D2CF81C72389100EBB0D8 /* WaypointViewController.swift */; };
 		D967545A1C76676000427BD9 /* NavigateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96754591C76676000427BD9 /* NavigateViewController.swift */; };
 		D96754601C77684200427BD9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967545F1C77684200427BD9 /* SettingsViewController.swift */; };
+		D96754621C7777F500427BD9 /* yaay.wav in Resources */ = {isa = PBXBuildFile; fileRef = D96754611C7777F500427BD9 /* yaay.wav */; };
 		D9EF4E811C753CB800D62F7A /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF4E801C753CB800D62F7A /* Audio.swift */; };
 		D9EF4E871C754E0B00D62F7A /* night.wav in Resources */ = {isa = PBXBuildFile; fileRef = D9EF4E861C754E0B00D62F7A /* night.wav */; };
 		D9EF4E8C1C7554D400D62F7A /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF4E8B1C7554D400D62F7A /* LocationTracker.swift */; };
@@ -29,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D908449C1C7B1AC200FA7439 /* aos.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = aos.wav; sourceTree = "<group>"; };
 		D926BD031C72759300B58343 /* WaypointModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointModel.swift; sourceTree = "<group>"; };
 		D926BD081C728EBB00B58343 /* WaypointModelCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointModelCollection.swift; sourceTree = "<group>"; };
 		D93D2CDC1C7230B600EBB0D8 /* WaypointList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaypointList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +46,7 @@
 		D93D2CF81C72389100EBB0D8 /* WaypointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointViewController.swift; sourceTree = "<group>"; };
 		D96754591C76676000427BD9 /* NavigateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigateViewController.swift; sourceTree = "<group>"; };
 		D967545F1C77684200427BD9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D96754611C7777F500427BD9 /* yaay.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = yaay.wav; sourceTree = "<group>"; };
 		D9EF4E801C753CB800D62F7A /* Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		D9EF4E861C754E0B00D62F7A /* night.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = night.wav; sourceTree = "<group>"; };
 		D9EF4E8B1C7554D400D62F7A /* LocationTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				D9EF4E931C761BFA00D62F7A /* golfball.wav */,
+				D908449C1C7B1AC200FA7439 /* aos.wav */,
+				D96754611C7777F500427BD9 /* yaay.wav */,
 				D9EF4E8F1C76158700D62F7A /* honk.wav */,
 				D9EF4E911C7617B100D62F7A /* crane.wav */,
 				D9EF4E861C754E0B00D62F7A /* night.wav */,
@@ -212,6 +218,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D908449D1C7B1AC200FA7439 /* aos.wav in Resources */,
+				D96754621C7777F500427BD9 /* yaay.wav in Resources */,
 				D9EF4E921C7617B100D62F7A /* crane.wav in Resources */,
 				D9EF4E941C761BFA00D62F7A /* golfball.wav in Resources */,
 				D9EF4E901C76158700D62F7A /* honk.wav in Resources */,
