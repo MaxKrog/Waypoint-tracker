@@ -22,8 +22,35 @@ class MasterTracker: NSObject, LocationTrackerDelegate {
     
     var delegate: MasterTrackerDelegate?
     
-    //Computed attributes
+    //MARK: Computed attributes
     var absoluteBearing = Double(0)
+    var alpha = Double(0) {
+        didSet {
+            print(alpha)
+        }
+    }
+    var relativeBearing = Double(0) {
+        didSet {
+            if abs(relativeBearing) < alpha {
+                self.convertedBearing = convertBearing(relativeBearing, alpha: self.alpha)
+            } else {
+                audio.updateRelativeBearing(relativeBearing)
+            }
+            delegate?.bearingChanged()
+            
+        }
+    }
+    var convertedBearing = Double(0) {
+        didSet {
+            audio.updateRelativeBearing(convertedBearing)
+        }
+    }
+    var distance = Float(0) {
+        didSet {
+            delegate?.distanceChanged()
+            audio.updateDistance(distance)
+        }
+    }
 
     init(waypointModel : WaypointModel) {
         super.init()
@@ -55,60 +82,36 @@ class MasterTracker: NSObject, LocationTrackerDelegate {
     //MARK: Delegate for LocationTracker
     func locationChanged() { //Calculates distance and bearing.
         let newLocation = locationTracker.location
-        delegate?.updateActiveWaypoint(activeWaypointIndex)
 
         let activeWaypoint = waypointModel.waypoints[activeWaypointIndex]
         let activeWaypointLocation = CLLocation(latitude: activeWaypoint.coordinate.latitude, longitude: activeWaypoint.coordinate.longitude)
         
-        let distance = Float(newLocation.distanceFromLocation(activeWaypointLocation))
-        audio.updateDistance(distance)
-        absoluteBearing = getBearing(locationTracker.location, waypointLocation: activeWaypointLocation)
+        self.distance = Float(newLocation.distanceFromLocation(activeWaypointLocation))
+        self.alpha = getAlpha(self.distance, radius: activeWaypoint.radius)
+        self.absoluteBearing = getAbsoluteBearing(locationTracker.location, waypointLocation: activeWaypointLocation)
+        self.updateRelativeBearing()
         
         if distance < 10 && changeWaypointWhenClose {
             let newIndex = activeWaypointIndex + 1
             if newIndex < waypointModel.waypoints.count {
-                activeWaypointIndex = newIndex
                 audio.yaay()
-                
-                
+                updateActiveWaypointIndex(newIndex)
             }
         }
-    }
-    
-    func headingChanged() {
-        let newHeading = locationTracker.heading
         
-        func mod(a: Double, b: Double) -> Double {
-            return (a - floor(a/b) * b)
-        }
-        
-        let absoluteBearing = self.absoluteBearing
-        let a = absoluteBearing - newHeading + 180
-        let b = mod(a, b: 360)
-        let relativeBearing = b - 180
-        audio.updateRelativeBearing(relativeBearing)
 
     }
     
-    //MARK: Helper functions
-    
-    func getBearing(userLocation: CLLocation, waypointLocation: CLLocation) -> Double{
-        func degreesToRadians(degrees: Double) -> Double { return degrees * M_PI / 180.0 }
-        func radiansToDegrees(radians: Double) -> Double { return radians * 180.0 / M_PI }
-        let lat1 = degreesToRadians(userLocation.coordinate.latitude);
-        let lon1 = degreesToRadians(userLocation.coordinate.longitude);
-        let lat2 = degreesToRadians(waypointLocation.coordinate.latitude)
-        let lon2 = degreesToRadians(waypointLocation.coordinate.longitude)
-        let dLon = lon2 - lon1;
-        let y = sin(dLon) * cos(lat2);
-        let x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon);
-        let radiansBearing = atan2(y, x);
-        var degreesBearing = radiansToDegrees(radiansBearing)
-        degreesBearing = (degreesBearing + 360) % 360; // 0 -> 360
-        return degreesBearing
+    func updateRelativeBearing() {
+        self.relativeBearing = getRelativeBearing(locationTracker.heading, absoluteBearing: self.absoluteBearing)
+
     }
 }
 
+//MARK: MasterTrackerDelegate
 protocol MasterTrackerDelegate {
     func updateActiveWaypoint(activeWaypointIndex: Int)
+    func distanceChanged()
+    func bearingChanged()
 }
+

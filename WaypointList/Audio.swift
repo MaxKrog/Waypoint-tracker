@@ -42,7 +42,7 @@ class Audio: NSObject{
         
         envNode.renderingAlgorithm = .HRTF
         
-        envNode.listenerPosition = AVAudioMake3DPoint(20, 0, 0)
+        envNode.listenerPosition = AVAudioMake3DPoint(0, 0, 0)
         envNode.listenerAngularOrientation = AVAudio3DAngularOrientation(yaw: yaw, pitch: pitch , roll: roll)
         
         super.init()
@@ -54,7 +54,7 @@ class Audio: NSObject{
         
         //MARK: Load audio-file.
         
-        let fileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("sonar", ofType: "wav")!)
+        let fileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("aos", ofType: "wav")!)
         let audioFile = try! AVAudioFile(forReading: fileURL)
         let audioFormat = audioFile.processingFormat
         let audioFrameCount = UInt32(audioFile.length)
@@ -96,7 +96,6 @@ class Audio: NSObject{
     func updateDistance (newDistance: Float) {
         distance = newDistance
         player.position = AVAudioMake3DPoint(0, 0, distance)
-        print("New audio  distance: \(distance.description)")
 
     }
     
@@ -105,22 +104,9 @@ class Audio: NSObject{
     }
     
     func updateRelativeBearing(newRelativeBearing: Double) {
-        print("Audio: New bearing: \(newRelativeBearing.description)")
         yaw = Float(newRelativeBearing)
+        print(yaw)
         envNode.listenerAngularOrientation = AVAudio3DAngularOrientation(yaw: yaw, pitch: pitch , roll: roll)
-        
-        let absDist = abs(newRelativeBearing)
-        if absDist > 90 {
-            print("Value bigger than abs(90)")
-            let multi = (absDist - 90) / 90
-            print("Multiplier \(multi.description)")
-            let occ = multi * -50
-            let oc = Float(occ)
-            print(occ.description)
-            player.occlusion = oc
-        } else {
-            player.occlusion = 0
-        }
         
     }
     

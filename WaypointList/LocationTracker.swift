@@ -39,21 +39,17 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     //MARK: CLLocationManagerDelegate.
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = locations.last!
-        print(location.horizontalAccuracy.description)
         delegate?.locationChanged()
-        
-        
     }
     
     func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         heading = newHeading.trueHeading
-        delegate?.headingChanged()
-        
+        delegate?.updateRelativeBearing()
     }
     
 }
 
 protocol LocationTrackerDelegate {
     func locationChanged()
-    func headingChanged()
+    func updateRelativeBearing()
 }

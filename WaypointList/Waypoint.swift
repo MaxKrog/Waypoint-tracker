@@ -21,9 +21,9 @@ class Waypoint: NSObject, MKAnnotation, NSCoding {
     }
     
     //MARK: Properties
-    var title: String? = "Hejsan"
-    dynamic var radius =  Int(10)
-    dynamic var coordinate = CLLocationCoordinate2D()
+    var title: String?
+    var radius: Int
+    var coordinate: CLLocationCoordinate2D
     
     //MARK: Initializer
     

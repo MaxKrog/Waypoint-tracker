@@ -18,14 +18,19 @@ class NavigateViewController: UIViewController, MasterTrackerDelegate, MKMapView
     //MARK: Outlets
     @IBOutlet weak var waypointLabel: UILabel!
     @IBOutlet weak var stepper: UIStepper!
+    @IBOutlet weak var distanceLabel: UITextField!
+    @IBOutlet weak var relativeBearingLabel: UITextField!
+    @IBOutlet weak var convertedBearingLabel: UITextField!
     
     @IBOutlet weak var map: MKMapView!{
         didSet {
             map.delegate = self
             map.pitchEnabled = false
             map.rotateEnabled = false
+            map.scrollEnabled = false
             map.showsUserLocation = true
-            map.userTrackingMode = .Follow
+            map.userTrackingMode = .FollowWithHeading
+            map.mapType = .Hybrid
     }
 }
 
@@ -75,6 +80,16 @@ class NavigateViewController: UIViewController, MasterTrackerDelegate, MKMapView
     func updateActiveWaypoint(activeWaypointIndex: Int) {
         let activeWaypointIndexReadable = activeWaypointIndex + 1
         waypointLabel.text = "Active waypoint: \(activeWaypointIndexReadable.description) of \(waypointModel.waypoints.count.description)"
+    }
+    
+    func distanceChanged() {
+        distanceLabel.text = "Distance: \(masterTracker.distance)"
+    }
+    
+    func bearingChanged(){
+        relativeBearingLabel.text = "Rel Bear: \(masterTracker.relativeBearing)"
+        convertedBearingLabel.text = "Conv Bear: \(masterTracker.convertedBearing)"
+        
     }
     
     //MARK: - NAVIGATION

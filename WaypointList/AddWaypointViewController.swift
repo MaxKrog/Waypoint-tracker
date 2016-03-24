@@ -54,8 +54,6 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate {
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         //Should dequeue a view.
         if (annotation is MKUserLocation) {
-            //if annotation is not an MKPointAnnotation (eg. MKUserLocation),
-            //return nil so map draws default view for it (eg. blue dot)...
             return nil
         } else {
             let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")

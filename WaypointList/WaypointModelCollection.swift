@@ -23,11 +23,7 @@ class WaypointModelCollection: NSObject{
         if let savedWaypointModels = load() {
             print("Loaded models from memory")
             waypointModels += savedWaypointModels
-        } else {
-            print("Loaded model defaults")
-            waypointModels += loadDefaults()
         }
-        
     }
     
     func addWaypointModel(waypointModel: WaypointModel){
@@ -42,18 +38,6 @@ class WaypointModelCollection: NSObject{
     
     
     //MARK: Helper
-    private func loadDefaults() -> [WaypointModel]{
-        var retArray = [WaypointModel]()
-        for index in 1..<6 {
-            let indexDouble = Double(index)
-            let waypoint1 = Waypoint(coordinate: CLLocationCoordinate2D(latitude: indexDouble, longitude: indexDouble), radius: index,     title: index.description)
-            let waypoint2 = Waypoint(coordinate: CLLocationCoordinate2D(latitude: indexDouble, longitude: indexDouble), radius: index, title: index.description)
-            
-            let waypointArray = [waypoint1, waypoint2]
-            retArray += [WaypointModel(title: index.description, waypoints: waypointArray)!]
-        }
-        return retArray
-    }
     
     //MARK: NSCoding
     func save() {
