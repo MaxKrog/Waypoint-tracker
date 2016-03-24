@@ -27,20 +27,18 @@ class Audio: NSObject{
     var yaayPlayer = AVAudioPlayerNode()
 
     override init(){
-        //player.renderingAlgorithm = AVAudio3DMixingRenderingAlgorithm.HRTF
+        player.renderingAlgorithm = AVAudio3DMixingRenderingAlgorithm.HRTF
         //player.occlusion = -10.0
         //player.obstruction = -10.0
         
-        envNode.reverbParameters.enable = true
-        envNode.reverbParameters.loadFactoryReverbPreset(.MediumRoom)
+        //envNode.reverbParameters.enable = true
+        //envNode.reverbParameters.loadFactoryReverbPreset(.MediumRoom)
         
-        player.reverbBlend = 0.9
+        //player.reverbBlend = 0.9
         
         envNode.distanceAttenuationParameters.distanceAttenuationModel = AVAudioEnvironmentDistanceAttenuationModel.Inverse
         envNode.distanceAttenuationParameters.maximumDistance = 100
         envNode.distanceAttenuationParameters.referenceDistance = 10
-        
-        envNode.renderingAlgorithm = .HRTF
         
         envNode.listenerPosition = AVAudioMake3DPoint(0, 0, 0)
         envNode.listenerAngularOrientation = AVAudio3DAngularOrientation(yaw: yaw, pitch: pitch , roll: roll)
@@ -95,7 +93,7 @@ class Audio: NSObject{
     //MARK: Delegate
     func updateDistance (newDistance: Float) {
         distance = newDistance
-        player.position = AVAudioMake3DPoint(0, 0, distance)
+        player.position = AVAudioMake3DPoint(0, 5, distance)
 
     }
     
@@ -105,7 +103,6 @@ class Audio: NSObject{
     
     func updateRelativeBearing(newRelativeBearing: Double) {
         yaw = Float(newRelativeBearing)
-        print(yaw)
         envNode.listenerAngularOrientation = AVAudio3DAngularOrientation(yaw: yaw, pitch: pitch , roll: roll)
         
     }
