@@ -36,6 +36,11 @@ class MasterTracker: NSObject, LocationTrackerDelegate {
             } else {
                 audio.updateRelativeBearing(relativeBearing)
             }
+            if abs(relativeBearing) > 90 {
+                audio.EQNode.bypass = false
+            } else {
+                audio.EQNode.bypass = true
+            }
             delegate?.bearingChanged()
             
         }
@@ -85,6 +90,8 @@ class MasterTracker: NSObject, LocationTrackerDelegate {
 
         let activeWaypoint = waypointModel.waypoints[activeWaypointIndex]
         let activeWaypointLocation = CLLocation(latitude: activeWaypoint.coordinate.latitude, longitude: activeWaypoint.coordinate.longitude)
+        
+
         
         self.distance = Float(newLocation.distanceFromLocation(activeWaypointLocation))
         self.alpha = getAlpha(self.distance, radius: activeWaypoint.radius)
