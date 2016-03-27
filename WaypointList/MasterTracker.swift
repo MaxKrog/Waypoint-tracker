@@ -78,6 +78,13 @@ class MasterTracker: NSObject, LocationTrackerDelegate {
         audio.pause()
     }
     
+    var logging: Bool = false
+    var logString = NSMutableString(string: "Lat,Lng,Heading,Accuracy,WaypointIndex\n")
+    func toggleLogging(state: Bool){
+        self.logging = state
+        print(state.description)
+    }
+    
     
     //MARK: Delegate for LocationTracker
     func locationChanged() { //Calculates distance and bearing.
@@ -105,6 +112,18 @@ class MasterTracker: NSObject, LocationTrackerDelegate {
     func updateRelativeBearing() {
         self.relativeBearing = getRelativeBearing(locationTracker.heading, absoluteBearing: self.absoluteBearing)
 
+    }
+    
+    func logPosition(){
+        if logging {
+            let lat = locationTracker.location.coordinate.latitude.description
+            let lng = locationTracker.location.coordinate.longitude.description
+            let heading = locationTracker.heading.description
+            let accuracy = locationTracker.location.horizontalAccuracy.description
+            let index = activeWaypointIndex.description
+            
+            self.logString.appendString("\(lat),\(lng),\(heading),\(accuracy),\(index)\n")
+        }
     }
 }
 

@@ -40,6 +40,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = locations.last!
         delegate?.locationChanged()
+        delegate?.logPosition()
     }
     
     func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
@@ -51,5 +52,6 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
 
 protocol LocationTrackerDelegate {
     func locationChanged()
+    func logPosition()
     func updateRelativeBearing()
 }

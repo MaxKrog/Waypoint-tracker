@@ -19,6 +19,7 @@ class AddWaypointViewController: UIViewController, MKMapViewDelegate {
             map.pitchEnabled = false
             map.rotateEnabled = false
             map.showsUserLocation = true
+            map.mapType = .Hybrid
             let center = CLLocationCoordinate2D(latitude:59.319643, longitude:17.950818)
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpanMake(0.05, 0.05))
             map.setRegion(region, animated: true)

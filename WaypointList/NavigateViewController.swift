@@ -8,8 +8,9 @@
 
 import UIKit
 import MapKit
+import MessageUI
 
-class NavigateViewController: UIViewController, MasterTrackerDelegate, MKMapViewDelegate {
+class NavigateViewController: UIViewController, MasterTrackerDelegate, MKMapViewDelegate, MFMailComposeViewControllerDelegate {
     
     //MARK: Properties
     var masterTracker: MasterTracker!
@@ -18,9 +19,11 @@ class NavigateViewController: UIViewController, MasterTrackerDelegate, MKMapView
     //MARK: Outlets
     @IBOutlet weak var waypointLabel: UILabel!
     @IBOutlet weak var stepper: UIStepper!
-    @IBOutlet weak var distanceLabel: UITextField!
-    @IBOutlet weak var relativeBearingLabel: UITextField!
-    @IBOutlet weak var convertedBearingLabel: UITextField!
+    
+    @IBOutlet var toggleLoggingButton: UIButton!
+    @IBOutlet var relativeBearingLabel: UILabel!
+    @IBOutlet var convertedBearingLabel: UILabel!
+    @IBOutlet var distanceLabel: UILabel!
     
     @IBOutlet weak var map: MKMapView!{
         didSet {
@@ -31,10 +34,46 @@ class NavigateViewController: UIViewController, MasterTrackerDelegate, MKMapView
             map.showsUserLocation = true
             map.userTrackingMode = .FollowWithHeading
             map.mapType = .Hybrid
+        }
     }
-}
+    
+    //MARK: Attributes
+    var logging: Bool = false
 
     //MARK: Actions
+    @IBAction func toggleLogging(sender: UIButton) {
+        if logging {
+            logging = false
+            toggleLoggingButton.setTitle("Resume Logging", forState: .Normal)
+        } else {
+            logging = true
+            toggleLoggingButton.setTitle("Pause Logging", forState: .Normal)
+        }
+        masterTracker.toggleLogging(logging)
+    }
+    
+    @IBAction func sendLog(sender: UIButton) {
+        
+        let data = masterTracker.logString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        
+        
+        let emailViewController = MFMailComposeViewController()
+        emailViewController.mailComposeDelegate = self
+        emailViewController.setToRecipients(["krog.max@gmail.com"])
+        emailViewController.setSubject("CSV File")
+        emailViewController.setMessageBody("", isHTML: false)
+    
+        emailViewController.addAttachmentData(data!, mimeType: "text/csv", fileName: "Sample.csv")
+
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(emailViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func stepperClick(sender: UIStepper) {
         let intValue = Int(stepper.value)
         masterTracker.updateActiveWaypointIndex(intValue)
@@ -75,7 +114,7 @@ class NavigateViewController: UIViewController, MasterTrackerDelegate, MKMapView
 
     }
     
-    //MARK: Delegate to MasterTracker
+    //MARK: - Delegate to MasterTracker
     
     func updateActiveWaypoint(activeWaypointIndex: Int) {
         let activeWaypointIndexReadable = activeWaypointIndex + 1
@@ -83,12 +122,12 @@ class NavigateViewController: UIViewController, MasterTrackerDelegate, MKMapView
     }
     
     func distanceChanged() {
-        distanceLabel.text = "Distance: \(masterTracker.distance)"
+        distanceLabel.text = "Dist: \(masterTracker.distance)"
     }
     
     func bearingChanged(){
-        relativeBearingLabel.text = "Rel Bear: \(masterTracker.relativeBearing)"
-        convertedBearingLabel.text = "Conv Bear: \(masterTracker.convertedBearing)"
+        relativeBearingLabel.text = "RB: \(masterTracker.relativeBearing)"
+        convertedBearingLabel.text = "CB: \(masterTracker.convertedBearing)"
         
     }
     
