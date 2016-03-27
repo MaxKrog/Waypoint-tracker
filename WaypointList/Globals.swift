@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 
+//MARK: MATH
 func getRelativeBearing(heading: CLLocationDirection, absoluteBearing: CLLocationDirection ) -> Double { // -180 -> +180
         
         func mod(a: Double, b: Double) -> Double { return (a - floor(a/b) * b) }
@@ -54,4 +55,11 @@ func convertBearing(relativeBearing: Double, alpha: Double) -> Double {
     return convertedBearing
     
     
+}
+
+//MARK: Constants
+
+struct Constants {
+    var outerCaptureRadius: Int = 15
+    var innerCaptureRadius: Int = 10
 }

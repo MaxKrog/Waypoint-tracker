@@ -91,7 +91,7 @@ class MasterTracker: NSObject, LocationTrackerDelegate {
         self.absoluteBearing = getAbsoluteBearing(locationTracker.location, waypointLocation: activeWaypointLocation)
         self.updateRelativeBearing()
         
-        if distance < 10 && changeWaypointWhenClose {
+        if distance < Float(Constants().outerCaptureRadius) && changeWaypointWhenClose {
             let newIndex = activeWaypointIndex + 1
             if newIndex < waypointModel.waypoints.count {
                 audio.yaay()

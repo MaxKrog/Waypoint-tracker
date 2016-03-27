@@ -37,7 +37,7 @@ class Audio: NSObject{
         //player.reverbBlend = 0.9
         
         envNode.distanceAttenuationParameters.distanceAttenuationModel = AVAudioEnvironmentDistanceAttenuationModel.Inverse
-        envNode.distanceAttenuationParameters.maximumDistance = 100
+        envNode.distanceAttenuationParameters.maximumDistance = 300
         envNode.distanceAttenuationParameters.referenceDistance = 10
         
         envNode.listenerPosition = AVAudioMake3DPoint(0, 0, 0)
