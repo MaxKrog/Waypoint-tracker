@@ -30,12 +30,11 @@ class Audio: NSObject{
 
     override init(){
         
-        EQNode = AVAudioUnitEQ(numberOfBands: 2)
         EQNode.globalGain = 1
         engine.attachNode(EQNode)
         let filterParams: AVAudioUnitEQFilterParameters = EQNode.bands.first! as AVAudioUnitEQFilterParameters
         filterParams.filterType = .LowPass
-        filterParams.frequency = 2000
+        filterParams.frequency = 1750
         filterParams.bypass = false
         EQNode.bypass = true
         
@@ -51,7 +50,7 @@ class Audio: NSObject{
         //player.reverbBlend = 0.9
         
         envNode.distanceAttenuationParameters.distanceAttenuationModel = AVAudioEnvironmentDistanceAttenuationModel.Inverse
-        envNode.distanceAttenuationParameters.maximumDistance = 300
+        envNode.distanceAttenuationParameters.maximumDistance = 100
         envNode.distanceAttenuationParameters.referenceDistance = 10
         
         envNode.listenerPosition = AVAudioMake3DPoint(0, 0, 0)
