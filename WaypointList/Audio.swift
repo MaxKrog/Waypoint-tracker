@@ -23,10 +23,24 @@ class Audio: NSObject{
     var engine = AVAudioEngine()
     var player = AVAudioPlayerNode()
     var envNode = AVAudioEnvironmentNode()
+    var EQNode = AVAudioUnitEQ(numberOfBands: 1)
+
     
     var yaayPlayer = AVAudioPlayerNode()
 
     override init(){
+        
+        EQNode = AVAudioUnitEQ(numberOfBands: 2)
+        EQNode.globalGain = 1
+        engine.attachNode(EQNode)
+        let filterParams: AVAudioUnitEQFilterParameters = EQNode.bands.first! as AVAudioUnitEQFilterParameters
+        filterParams.filterType = .LowPass
+        filterParams.frequency = 2000
+        filterParams.bypass = false
+        EQNode.bypass = true
+        
+        
+        
         player.renderingAlgorithm = AVAudio3DMixingRenderingAlgorithm.HRTF
         //player.occlusion = -10.0
         //player.obstruction = -10.0
@@ -44,12 +58,11 @@ class Audio: NSObject{
         envNode.listenerAngularOrientation = AVAudio3DAngularOrientation(yaw: yaw, pitch: pitch , roll: roll)
         
         super.init()
-        
+    
         // MARK: Audio connect nodes
         engine.attachNode(player)
         engine.attachNode(envNode)
         engine.attachNode(yaayPlayer)
-        
         //MARK: Load audio-file.
         
         let fileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("aos", ofType: "wav")!)
@@ -60,8 +73,9 @@ class Audio: NSObject{
         try! audioFile.readIntoBuffer(audioFileBuffer)
 
         
-        engine.connect(player, to: envNode, format: audioFormat )
+        engine.connect(player, to: EQNode, format: audioFormat )
         engine.connect(envNode, to: engine.mainMixerNode , format: nil)
+        engine.connect(EQNode, to:envNode, format: audioFormat)
         engine.connect(yaayPlayer, to: engine.mainMixerNode, format: nil)
         
         //MARK: Start engine
@@ -93,7 +107,7 @@ class Audio: NSObject{
     //MARK: Delegate
     func updateDistance (newDistance: Float) {
         distance = newDistance
-        player.position = AVAudioMake3DPoint(0, 5, distance)
+        player.position = AVAudioMake3DPoint(0, 5, -distance)
 
     }
     
@@ -103,6 +117,7 @@ class Audio: NSObject{
     
     func updateRelativeBearing(newRelativeBearing: Double) {
         yaw = Float(newRelativeBearing)
+        print(yaw)
         envNode.listenerAngularOrientation = AVAudio3DAngularOrientation(yaw: yaw, pitch: pitch , roll: roll)
         
     }

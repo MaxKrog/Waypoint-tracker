@@ -14,7 +14,7 @@ func getRelativeBearing(heading: CLLocationDirection, absoluteBearing: CLLocatio
         
         func mod(a: Double, b: Double) -> Double { return (a - floor(a/b) * b) }
         
-        let a = absoluteBearing - heading + 180
+        let a = heading - absoluteBearing + 180
         let b = mod(a, b: 360)
         let relativeBearing = b - 180
         
