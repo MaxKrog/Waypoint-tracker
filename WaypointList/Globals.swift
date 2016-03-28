@@ -62,4 +62,6 @@ func convertBearing(relativeBearing: Double, alpha: Double) -> Double {
 struct Constants {
     var outerCaptureRadius: Int = 15
     var innerCaptureRadius: Int = 10
+    var calculateAlphaDistance: Int = 60
+    var maxDistance: Int = 200
 }

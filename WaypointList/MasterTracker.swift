@@ -31,7 +31,7 @@ class MasterTracker: NSObject, LocationTrackerDelegate {
     }
     var relativeBearing = Double(0) {
         didSet {
-            if abs(relativeBearing) < alpha {
+            if abs(relativeBearing) < alpha && distance < Float(Constants().calculateAlphaDistance) {
                 self.convertedBearing = convertBearing(relativeBearing, alpha: self.alpha)
             } else {
                 audio.updateRelativeBearing(relativeBearing)
