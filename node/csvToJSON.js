@@ -1,3 +1,6 @@
+//Usage: node csvToJSON.js "path to csv-file".
+//Outputs a new file from the csv with .json appended.
+
 var fs = require("fs");
 
 console.log(process.argv);
