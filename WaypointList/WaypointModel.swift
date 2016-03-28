@@ -32,7 +32,7 @@ class WaypointModel: NSObject, NSCoding {
     //MARK: API for interaction with the model.
     
     func exportRoute() -> NSData? {
-        var routeCSVString = NSMutableString(string: "Lat,Lng\n")
+        let routeCSVString = NSMutableString(string: "Lat,Lng\n")
         for waypoint in self.waypoints {
             routeCSVString.appendString("\(waypoint.coordinate.latitude.description),\(waypoint.coordinate.longitude.description)\n")
         }
