@@ -31,8 +31,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
             endingLineNumber = "86"
-            landmarkName = "locationChanged()"
-            landmarkType = "5">
+            landmarkName = "MasterTracker"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WaypointList/NavigateViewController.swift"
-            timestampString = "480533026.922345"
+            timestampString = "480880888.332388"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "updateActiveWaypoint(_:)"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "changeAuto(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

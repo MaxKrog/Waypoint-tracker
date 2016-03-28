@@ -65,9 +65,23 @@ class NavigateViewController: UIViewController, MasterTrackerDelegate, MKMapView
     
         emailViewController.addAttachmentData(data!, mimeType: "text/csv", fileName: "Sample.csv")
 
-        if MFMailComposeViewController.canSendMail() {
-            self.presentViewController(emailViewController, animated: true, completion: nil)
-        }
+        self.presentViewController(emailViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction func exportRoute(sender: UIBarButtonItem) {
+        
+        let data = waypointModel.exportRoute()
+        
+        let emailViewController = MFMailComposeViewController()
+        emailViewController.mailComposeDelegate = self
+        emailViewController.setToRecipients(["krog.max@gmail.com"])
+        emailViewController.setSubject("Route of \(waypointModel.title)")
+        emailViewController.setMessageBody("", isHTML: false)
+        
+        emailViewController.addAttachmentData(data!, mimeType: "text/csv", fileName: "Route.csv")
+        
+        self.presentViewController(emailViewController, animated: true, completion: nil)
+        
     }
     
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
