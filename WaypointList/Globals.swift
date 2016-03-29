@@ -64,4 +64,7 @@ struct Constants {
     var innerCaptureRadius: Int = 10
     var calculateAlphaDistance: Int = 60
     var maxDistance: Int = 200
+    
 }
+
+var isBeingTested: Bool = true

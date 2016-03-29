@@ -20,6 +20,7 @@ class NavigateViewController: UIViewController, MasterTrackerDelegate, MKMapView
     @IBOutlet weak var waypointLabel: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     
+    @IBOutlet var stackView: UIStackView!
     @IBOutlet var toggleLoggingButton: UIButton!
     @IBOutlet var relativeBearingLabel: UILabel!
     @IBOutlet var convertedBearingLabel: UILabel!
@@ -100,6 +101,11 @@ class NavigateViewController: UIViewController, MasterTrackerDelegate, MKMapView
     
     //MARK: View lifecycle
     override func viewDidLoad() {
+        if isBeingTested {
+            stackView.hidden = true
+            map.hidden = true
+        }
+        
         print("Navigate view did load")
         super.viewDidLoad()
         
