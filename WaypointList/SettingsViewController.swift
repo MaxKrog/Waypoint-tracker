@@ -23,20 +23,7 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    @IBAction func sliderChanged(sender: UISlider) {
-        let negValue = -1 * sender.value
-        audio.updateObstruction(negValue)
+    @IBAction func `switch`(sender: UISwitch) {
+        isBeingTested = sender.on
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
