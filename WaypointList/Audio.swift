@@ -23,20 +23,20 @@ class Audio: NSObject{
     var engine = AVAudioEngine()
     var player = AVAudioPlayerNode()
     var envNode = AVAudioEnvironmentNode()
-    var EQNode = AVAudioUnitEQ(numberOfBands: 1)
+    //var EQNode = AVAudioUnitEQ(numberOfBands: 1)
 
     
     var yaayPlayer = AVAudioPlayerNode()
 
     override init(){
         
-        EQNode.globalGain = 1
+        /*EQNode.globalGain = 1
         engine.attachNode(EQNode)
         let filterParams: AVAudioUnitEQFilterParameters = EQNode.bands.first! as AVAudioUnitEQFilterParameters
         filterParams.filterType = .LowPass
         filterParams.frequency = 1750
         filterParams.bypass = false
-        EQNode.bypass = true
+        EQNode.bypass = true*/
         
         
         
@@ -71,11 +71,13 @@ class Audio: NSObject{
         let audioFileBuffer = AVAudioPCMBuffer(PCMFormat: audioFormat, frameCapacity: audioFrameCount)
         try! audioFile.readIntoBuffer(audioFileBuffer)
 
-        
-        engine.connect(player, to: EQNode, format: audioFormat )
+
+        engine.connect(player, to: envNode, format: audioFormat )
         engine.connect(envNode, to: engine.mainMixerNode , format: nil)
-        engine.connect(EQNode, to:envNode, format: audioFormat)
         engine.connect(yaayPlayer, to: engine.mainMixerNode, format: nil)
+        
+        //engine.connect(player, to: EQNode, format: audioFormat )
+        //engine.connect(EQNode, to:envNode, format: audioFormat)
         
         //MARK: Start engine
         try! engine.start()

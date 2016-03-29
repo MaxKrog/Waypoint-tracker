@@ -37,9 +37,11 @@ class MasterTracker: NSObject, LocationTrackerDelegate {
                 audio.updateRelativeBearing(relativeBearing)
             }
             if abs(relativeBearing) > 90 {
-                audio.EQNode.bypass = false
+                //audio.EQNode.bypass = false
+                audio.player.obstruction = -10
             } else {
-                audio.EQNode.bypass = true
+                //audio.EQNode.bypass = true
+                audio.player.obstruction = 0
             }
             delegate?.bearingChanged()
             
