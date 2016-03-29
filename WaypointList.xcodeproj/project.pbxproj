@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		046AF31D1CAABEC100A005AC /* Ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 046AF31C1CAABEC100A005AC /* Ding.wav */; };
+		046AF3231CAACA2700A005AC /* lou.wav in Resources */ = {isa = PBXBuildFile; fileRef = 046AF3221CAACA2700A005AC /* lou.wav */; };
 		D908449D1C7B1AC200FA7439 /* aos.wav in Resources */ = {isa = PBXBuildFile; fileRef = D908449C1C7B1AC200FA7439 /* aos.wav */; };
 		D926BD041C72759300B58343 /* WaypointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D926BD031C72759300B58343 /* WaypointModel.swift */; };
 		D926BD091C728EBB00B58343 /* WaypointModelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D926BD081C728EBB00B58343 /* WaypointModelCollection.swift */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		046AF31C1CAABEC100A005AC /* Ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Ding.wav; sourceTree = "<group>"; };
+		046AF3221CAACA2700A005AC /* lou.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lou.wav; sourceTree = "<group>"; };
 		D908449C1C7B1AC200FA7439 /* aos.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = aos.wav; sourceTree = "<group>"; };
 		D926BD031C72759300B58343 /* WaypointModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointModel.swift; sourceTree = "<group>"; };
 		D926BD081C728EBB00B58343 /* WaypointModelCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointModelCollection.swift; sourceTree = "<group>"; };
@@ -138,7 +142,9 @@
 			isa = PBXGroup;
 			children = (
 				D908449C1C7B1AC200FA7439 /* aos.wav */,
+				046AF31C1CAABEC100A005AC /* Ding.wav */,
 				D9B767191CA69D4E00F7528C /* yaay.wav */,
+				046AF3221CAACA2700A005AC /* lou.wav */,
 				D9FFB5F71CA1C8E500DEE554 /* sonar.wav */,
 				D9EF4E801C753CB800D62F7A /* Audio.swift */,
 			);
@@ -186,7 +192,7 @@
 				TargetAttributes = {
 					D93D2CDB1C7230B600EBB0D8 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = P7P24R869F;
+						DevelopmentTeam = G2A39J7VHC;
 					};
 				};
 			};
@@ -215,9 +221,11 @@
 			files = (
 				D9B7671A1CA69D4E00F7528C /* yaay.wav in Resources */,
 				D908449D1C7B1AC200FA7439 /* aos.wav in Resources */,
+				046AF3231CAACA2700A005AC /* lou.wav in Resources */,
 				D93D2CEA1C7230B600EBB0D8 /* LaunchScreen.storyboard in Resources */,
 				D9FFB5F81CA1C8E500DEE554 /* sonar.wav in Resources */,
 				D93D2CE71C7230B600EBB0D8 /* Assets.xcassets in Resources */,
+				046AF31D1CAABEC100A005AC /* Ding.wav in Resources */,
 				D93D2CE51C7230B600EBB0D8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

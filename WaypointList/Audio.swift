@@ -23,7 +23,7 @@ class Audio: NSObject{
     var engine = AVAudioEngine()
     var player = AVAudioPlayerNode()
     var envNode = AVAudioEnvironmentNode()
-    //var EQNode = AVAudioUnitEQ(numberOfBands: 1)
+    var EQNode = AVAudioUnitEQ(numberOfBands: 1)
 
     
     var yaayPlayer = AVAudioPlayerNode()
@@ -39,7 +39,7 @@ class Audio: NSObject{
         EQNode.bypass = true*/
         
         
-        
+        yaayPlayer.volume = 0.3
         player.renderingAlgorithm = AVAudio3DMixingRenderingAlgorithm.HRTF
         //player.occlusion = -10.0
         //player.obstruction = -10.0
@@ -49,9 +49,9 @@ class Audio: NSObject{
         
         //player.reverbBlend = 0.9
         
-        envNode.distanceAttenuationParameters.distanceAttenuationModel = AVAudioEnvironmentDistanceAttenuationModel.Inverse
-        envNode.distanceAttenuationParameters.maximumDistance = 100
-        envNode.distanceAttenuationParameters.referenceDistance = 10
+        envNode.distanceAttenuationParameters.distanceAttenuationModel = AVAudioEnvironmentDistanceAttenuationModel.Linear
+        envNode.distanceAttenuationParameters.maximumDistance = 200
+        envNode.distanceAttenuationParameters.referenceDistance = 15
         
         envNode.listenerPosition = AVAudioMake3DPoint(0, 0, 0)
         envNode.listenerAngularOrientation = AVAudio3DAngularOrientation(yaw: yaw, pitch: pitch , roll: roll)
@@ -64,7 +64,7 @@ class Audio: NSObject{
         engine.attachNode(yaayPlayer)
         //MARK: Load audio-file.
         
-        let fileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("aos", ofType: "wav")!)
+        let fileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("lou", ofType: "wav")!)
         let audioFile = try! AVAudioFile(forReading: fileURL)
         let audioFormat = audioFile.processingFormat
         let audioFrameCount = UInt32(audioFile.length)
@@ -98,7 +98,7 @@ class Audio: NSObject{
     
     func yaay() {
         print("Yaay! User reached a waypoint!")
-        let yaayFileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("yaay", ofType: "wav")!)
+        let yaayFileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Ding", ofType: "wav")!)
         let yaayAudioFile = try! AVAudioFile(forReading: yaayFileURL)
         
         yaayPlayer.scheduleFile(yaayAudioFile, atTime: nil, completionHandler: nil)
@@ -118,7 +118,6 @@ class Audio: NSObject{
     
     func updateRelativeBearing(newRelativeBearing: Double) {
         yaw = Float(newRelativeBearing)
-        print(yaw)
         envNode.listenerAngularOrientation = AVAudio3DAngularOrientation(yaw: yaw, pitch: pitch , roll: roll)
         
     }
