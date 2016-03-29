@@ -22,7 +22,7 @@ google.maps.event.addDomListener(window, 'load', initializeMap);
 function fetchRoute(){
 	$.ajax({
 		type: "GET",
-		url: "./Route.csv.json",
+		url: "./JSON/undersokningsrutt.csv.json",
 		success: function(data){
 			data = JSON.parse(data);
 			console.log(data);
