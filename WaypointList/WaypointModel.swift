@@ -29,6 +29,16 @@ class WaypointModel: NSObject, NSCoding {
         super.init()
     }
     
+    //MARK: API for interaction with the model.
+    
+    func exportRoute() -> NSData? {
+        let routeCSVString = NSMutableString(string: "Lat,Lng\n")
+        for waypoint in self.waypoints {
+            routeCSVString.appendString("\(waypoint.coordinate.latitude.description),\(waypoint.coordinate.longitude.description)\n")
+        }
+        return routeCSVString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+    }
+    
     //MARK: NSCoding
     static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("WaypointsModel")
