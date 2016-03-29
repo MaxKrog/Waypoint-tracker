@@ -4,7 +4,7 @@
 var fs = require("fs");
 
 console.log(process.argv);
-fs.readFile(process.argv[2], "utf8",  function(err, data){
+fs.readFile("./CSV/" + process.argv[2], "utf8",  function(err, data){
 	
 	data = data.split("\n");
 
@@ -20,7 +20,7 @@ fs.readFile(process.argv[2], "utf8",  function(err, data){
 		return json;
 	})
 
-	fs.writeFile(process.argv[2] + ".json", JSON.stringify(jsonArray, null, 4), function(err) {
+	fs.writeFile("./JSON/" + process.argv[2] + ".json", JSON.stringify(jsonArray, null, 4), function(err) {
 		if(err) throw err;
 		console.log("Done!");
 	})
