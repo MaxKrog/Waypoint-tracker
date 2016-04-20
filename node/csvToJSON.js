@@ -10,6 +10,7 @@ fs.readFile("./CSV/" + process.argv[2], "utf8",  function(err, data){
 
 	var keys = data[0].split(",");
 	data.splice(0, 1);
+	data.pop()
 	var jsonArray = data.map(function(item, index){
 		item = item.split(",");
 		var json = {};

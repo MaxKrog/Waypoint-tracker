@@ -52,6 +52,7 @@ class Audio: NSObject{
         envNode.distanceAttenuationParameters.distanceAttenuationModel = AVAudioEnvironmentDistanceAttenuationModel.Linear
         envNode.distanceAttenuationParameters.maximumDistance = 200
         envNode.distanceAttenuationParameters.referenceDistance = 15
+        envNode.distanceAttenuationParameters.rolloffFactor = 0.5
         
         envNode.listenerPosition = AVAudioMake3DPoint(0, 0, 0)
         envNode.listenerAngularOrientation = AVAudio3DAngularOrientation(yaw: yaw, pitch: pitch , roll: roll)
